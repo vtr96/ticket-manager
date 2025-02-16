@@ -1,0 +1,13 @@
+<h2>Listagem de Eventos</h2>
+
+{{#user.isAdmin}}
+    <a href="/events/new">Criar novo evento</a>
+{{/user.isAdmin}}
+
+<ul>
+    {{#events}}
+        <li>
+            <strong>{{title}}</strong> - Restam {{available_tickets}} ingressos - ${{price}}<br>
+        </li>
+    {{/events}}
+</ul>

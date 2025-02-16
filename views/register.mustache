@@ -1,7 +1,12 @@
-<h2>Register</h2>
+<h2>Criar nova conta</h2>
 <form method="POST" action="/register">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Register</button>
+    <input type="text" name="username" placeholder="Usuário" required>
+    <input type="password" name="password" placeholder="Senha" required>
+    <br>
+    <label>
+        <input type="checkbox" name="isAdmin">Administrador
+    </label>
+    <br>
+    <button type="submit">Registrar</button>
 </form>
 <a href="/login">Login</a>

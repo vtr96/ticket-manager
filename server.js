@@ -20,6 +20,7 @@ app.use(session({
 }));
 
 app.use('/', require('./routes/authRoutes'));
+app.use('/events', require('./routes/eventRoutes'));
 
 const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

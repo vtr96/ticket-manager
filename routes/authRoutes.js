@@ -8,9 +8,13 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, isAdmin } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, password: hashedPassword });
+    const user = new User({
+        username,
+        password: hashedPassword,
+        isAdmin: isAdmin === 'on'
+    });
     await user.save();
     res.redirect('/login');
 });
