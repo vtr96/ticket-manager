@@ -20,7 +20,9 @@ app.use(session({
 }));
 
 app.use('/', require('./routes/authRoutes'));
+app.use('/', require('./routes/bookingRoutes'));
 app.use('/events', require('./routes/eventRoutes'));
+app.use('/booking', require('./routes/bookingRoutes'));
 
 const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

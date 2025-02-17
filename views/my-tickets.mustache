@@ -1,0 +1,11 @@
+<h2>Meus ingressos</h2>
+
+<ul>
+    {{#tickets}}
+        <li>
+            <strong>{{event_id.title}}</strong> - {{quantity}} ingressos comprados.
+        </li>
+    {{/tickets}}
+</ul>
+
+<a href="/dashboard">Dashboard</a>

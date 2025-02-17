@@ -33,6 +33,15 @@ router.post('/login', async (req, res) => {
     res.redirect('/dashboard');
 });
 
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect('/');
+        }
+        res.redirect('/login');
+    });
+});
+
 router.get('/dashboard', (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     res.render('dashboard', { username: req.session.user.username });
