@@ -5,6 +5,6 @@ const TicketSchema = new mongoose.Schema({
     event_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Event', required: true },
     quantity: { type: Number, required: true },
     booking_date: { type: Date, default: Date.now }
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('Ticket', TicketSchema);

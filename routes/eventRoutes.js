@@ -24,4 +24,28 @@ router.post('/new', isAuthenticated, isAdmin, async (req, res) => {
     res.redirect('/events');
 });
 
+router.get('/edit/:eventId', isAuthenticated, isAdmin, async (req, res) => {
+    const event = await Event.findById(req.params.eventId);
+    if (!event) return res.redirect('/events');
+
+    res.render('edit-event', { event });
+});
+
+router.post('/edit/:eventId', isAuthenticated, isAdmin, async (req, res) => {
+    const { price, total_tickets } = req.body;
+    const event = await Event.findById(req.params.eventId);
+    if (!event) return res.redirect('/events');
+
+    event.price = price;
+
+    const addedTickets = total_tickets - event.total_tickets;
+    if (addedTickets > 0) {
+        event.available_tickets += addedTickets;
+    }
+    event.total_tickets = total_tickets;
+
+    await event.save();
+    res.redirect('/events');
+});
+
 module.exports = router;

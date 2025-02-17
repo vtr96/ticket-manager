@@ -1,0 +1,11 @@
+<h2>Alterar evento</h2>
+<form method="POST" action="/events/edit/{{event._id}}">
+    <label>Novo Valor ($):</label>
+    <input type="number" name="price" value="{{event.price}}" required>
+
+    <label>Ingressos Totais:</label>
+    <input type="number" name="total_tickets" value="{{event.total_tickets}}" required>
+
+    <button type="submit">Atualizar evento</button>
+</form>
+<a href="/events">Voltar aos eventos</a>

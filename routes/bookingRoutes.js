@@ -27,8 +27,17 @@ router.post('/book/:eventId', isAuthenticated, async (req, res) => {
 });
 
 router.get('/my-tickets', isAuthenticated, async (req, res) => {
-    const tickets = await Ticket.find({ user_id: req.session.user._id }).populate('event_id');
-    res.render('my-tickets', { tickets });
+    const searchQuery = req.query.q || '';
+    const userId = req.session.user._id;
+
+    const tickets = await Ticket.find({ user_id: userId }).populate('event_id');
+
+    const filteredTickets = searchQuery
+        ? tickets.filter(ticket => ticket.event_id.title.toLowerCase().includes(searchQuery.toLowerCase()))
+        : tickets;
+
+    res.render('my-tickets', { tickets: filteredTickets, searchQuery });
 });
+
 
 module.exports = router;

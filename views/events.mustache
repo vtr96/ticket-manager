@@ -7,7 +7,13 @@
 <ul>
     {{#events}}
         <li>
-            Evento: <strong>{{title}}</strong> - Restam {{available_tickets}} ingressos - ${{price}}<br>
+            Evento: <strong>{{title}}</strong> - Restam {{available_tickets}} ingressos - ${{price}}
+            {{#user.isAdmin}}
+                <button>
+                    <a href="/events/edit/{{_id}}">Editar evento</a>
+                </button>
+            {{/user.isAdmin}}
+            <br>
             <form method="POST" action="/booking/book/{{_id}}">
                 <input type="number" name="quantity" min="1" max="{{available_tickets}}" required>
                 <button type="submit">Comprar</button>
